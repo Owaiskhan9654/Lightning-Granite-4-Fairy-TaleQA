@@ -1,0 +1,8 @@
+transformers>=4.40.0
+accelerate
+safetensors
+gradio
+sentencepiece
+torch
+peft
+bitsandbytes
