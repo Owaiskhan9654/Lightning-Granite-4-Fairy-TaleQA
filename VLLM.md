@@ -22,19 +22,26 @@ docker pull vllm/vllm-openai:latest
 
 > For stability it is recommended to pin a version tag, e.g., `vllm/vllm-openai:v0.10.2`. Granite models require vLLM version 0.10.2 or above.
 
+# make sure packages are update
+```bash
+sudo apt-get update
+sudo apt-get install -y build-essential libc6-dev
+```
 ### 2. Run Granite in the container
 
 ```bash
 docker run --runtime nvidia --gpus all \
   -v ~/.cache/huggingface:/root/.cache/huggingface \
+  -e VLLM_USE_FLASHINFER_SAMPLER=0 \
   -p 8000:8000 \
   vllm/vllm-openai:latest \
-    --model ibm-granite/granite-4.0-h-small
+    --model ibm-granite/granite-4.0-micro \
+    --max_model_len 65536
 ```
 
 * Mount `~/.cache/huggingface` so models are cached locally for reuse.
 * If the model is not pre-downloaded, vLLM will fetch it automatically from Hugging Face.
-* The example uses the model `ibm-granite/granite-4.0-h-small`.
+* Here I used the model `ibm-granite/granite-4.0-micro`.
 
 ### 3. Run a sample request
 
@@ -42,7 +49,7 @@ docker run --runtime nvidia --gpus all \
 curl -X POST http://localhost:8000/v1/chat/completions \
   -H "Content-Type: application/json" \
   -d '{
-        "model": "ibm-granite/granite-4.0-h-small",
+        "model": "ibm-granite/granite-4.0-micro",
         "messages": [
           {"role": "user", "content": "How are you today?"}
         ]
@@ -90,3 +97,5 @@ With a single Docker run command, you can deploy an IBM Granite model via vLLM a
 
 * vLLM Docker deployment: [vLLM docs](https://docs.vllm.ai/en/latest/serving/docker.html)
 * IBM Granite + vLLM guide: IBM Granite docs
+
+
