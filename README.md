@@ -2,7 +2,7 @@
 
 This Space provides an interactive Gradio interface to run inference on:
 
-**Model:** `owaiskha9654/granite-4-finetuned-FairyTaleQA`
+**Model:** [`owaiskha9654/granite-4-finetuned-finance-qa-data`](https://huggingface.co/owaiskha9654/granite-4-finetuned-finance-qa-data)
 
 ## Features
 - Simple prompt → response generation
