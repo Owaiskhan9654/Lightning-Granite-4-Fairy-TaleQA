@@ -6,7 +6,7 @@ from peft import PeftModel
 
 # ---------------- CONFIG ----------------
 BASE_MODEL = "ibm-granite/granite-4.0-micro"
-ADAPTER_REPO = "owaiskha9654/granite-4-finetuned-FairyTaleQA"
+ADAPTER_REPO = "owaiskha9654/granite-4-finetuned-finance-qa-data"
 HEADER_IMAGE = "https://github.com/Owaiskhan9654/Granite-4.0-Fine-Tuning/blob/669fcfa2c9e5c42d7ff67bac5ae341ce27a22fe9/ibm-granite-4-0-release.jpeg?raw=true"
 OFFLOAD_DIR = "/tmp/offload"
 # ----------------------------------------
@@ -86,7 +86,7 @@ css = """
 
 with gr.Blocks(title="Granite-4 LoRA", css=css, theme=gr.themes.Base()) as demo:
     with gr.Row(elem_classes="header-row"):
-        gr.Markdown(f"### <span class='header-title'>Granite 4.0 LoRA Fairy TaleQA</span>")
+        gr.Markdown(f"### <span class='header-title'>Granite 4.0 LoRA on<br>Finance QA Benchmark Dataset</span>")
         gr.Image(value=HEADER_IMAGE,show_label=False,elem_id="header_img",interactive=False,width=450,height=300)
     with gr.Row():
         with gr.Column(scale=1):
